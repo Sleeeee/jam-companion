@@ -1,0 +1,10 @@
+FROM docker.io/oven/bun:1.4-alpine@sha256:4cf82f5686b196504fe119db3fcd9185b191f82ece82c40680e597228ec6070a
+
+WORKDIR /app
+
+COPY package.json svelte.config.js vite.config.js* vite.config.ts* ./
+RUN bun install
+
+COPY ./ ./
+
+CMD ["bun", "run", "dev", "--host", "0.0.0.0"]

@@ -1,0 +1,11 @@
+FROM docker.io/library/python:3.15-alpine@sha256:d44b1254cb92329418d164b22b20d86bbd3869d48e80e09e476531a409a728bb
+COPY --from=docker.io/astral/uv:python3.15-alpine@sha256:90f91872737a0e0d7672f8b7186ba5703d66b77faa223d334a2ef5f072c6bbb1 /usr/local/bin/uv /usr/local/bin/uvx /bin/
+
+WORKDIR /code
+
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen
+
+COPY ./app /code/app
+
+CMD ["uv", "run", "fastapi", "dev", "./app/main.py", "--host", "0.0.0.0", "--port", "8000"]

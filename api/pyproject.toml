@@ -1,0 +1,9 @@
+[project]
+name = "jam-companion"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]>=0.160.0",
+    "python-multipart>=0.0.32",
+    "uvicorn>=0.54.0",
+]
