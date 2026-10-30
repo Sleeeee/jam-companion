@@ -12,7 +12,7 @@ spec:
           hostPort: 5173
       volumeMounts:
         - name: web-src
-          mountPath: /app/src
+          mountPath: /app/
 
     - name: api
       image: localhost/jam-companion-api:dev
@@ -26,7 +26,7 @@ spec:
   volumes:
     - name: web-src
       hostPath:
-        path: ./web/src
+        path: ./web/
         type: Directory
     - name: api-src
       hostPath:
