@@ -2,9 +2,9 @@
   import { ModeWatcher } from "mode-watcher";
   import { Header, Player } from "$lib/components/custom";
 
-  let result = 'Loading...';
+  let result = "Loading...";
 
-  fetch('/api/')
+  fetch("/api/")
     .then((response) => response.json())
     .then((data) => {
       result = data.message;
@@ -16,7 +16,9 @@
 
 <ModeWatcher />
 
-<main class="min-h-screen w-9/10 mx-auto bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200">
+<main
+  class="min-h-screen w-9/10 mx-auto bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200"
+>
   <Header />
   <Player />
 </main>

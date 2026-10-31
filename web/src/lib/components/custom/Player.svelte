@@ -15,13 +15,13 @@
     barNumberColor: "#1e2939", // gray-800
     barSeparatorColor: "#1e2939",
     mainGlyphColor: "#1e2939",
-    scoreInfoColor: "#1e2939"
+    scoreInfoColor: "#1e2939",
   };
   const colorsDark: RenderingResources = {
     barNumberColor: "#e5e7eb", // gray-200
     barSeparatorColor: "#e5e7eb",
     mainGlyphColor: "#e5e7eb",
-    scoreInfoColor: "#e5e7eb"
+    scoreInfoColor: "#e5e7eb",
   };
 
   onMount(() => {
@@ -32,7 +32,7 @@
       },
       display: {
         layoutMode: LayoutMode.Horizontal,
-        resources: mode.current === "light" ? colorsLight : colorsDark
+        resources: mode.current === "light" ? colorsLight : colorsDark,
       },
       player: {
         enablePlayer: true,
@@ -43,13 +43,9 @@
         scrollMode: ScrollMode.Smooth,
         scrollOffsetX: -250,
         scrollElement,
-        soundFont: "/soundfont/sonivox.sf2"
-      }
+        soundFont: "/soundfont/sonivox.sf2",
+      },
     } satisfies json.SettingsJson);
-
-    api.scoreLoaded.on((score) => {
-      console.log(score.tracks);
-    });
 
     api.renderFinished.on(() => {
       console.log("Rendering finished");
@@ -68,14 +64,13 @@
 
     alphaTabContext.api.settings.fillFromJson({
       display: {
-        resources: mode.current === "light" ? colorsLight : colorsDark
-      }
+        resources: mode.current === "light" ? colorsLight : colorsDark,
+      },
     });
 
     alphaTabContext.api.updateSettings();
     alphaTabContext.api.render();
   });
-
 </script>
 
 <Score bind:element bind:scrollElement />

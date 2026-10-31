@@ -1,36 +1,10 @@
 <script lang="ts">
-  import { getContext } from "svelte";
-  import { Button } from "$lib/components/ui";
-  import { AlphaTabApi, synth } from "@coderline/alphatab";
-  import PauseIcon from "@lucide/svelte/icons/pause";
-  import PlayIcon from "@lucide/svelte/icons/play";
-
-  const alphaTabContext = getContext("alphatab");
-  let isPlaying: boolean = $state(false);
-
-  const togglePlay = () => {
-    alphaTabContext.api?.playPause();
-  };
-
-  $effect(() => {
-    const api = alphaTabContext.api;
-    if (!api) return;
-
-    const playerStateChangedHandler = (event) => {
-      isPlaying = event.state === synth.PlayerState.Playing;
-    };
-
-    api.playerStateChanged.on(playerStateChangedHandler);
-    return () => {
-      api.playerStateChanged.off(playerStateChangedHandler);
-    };
-  });
+  import { PlayPause, TrackSelector } from "./controls";
 </script>
 
-<Button onclick={togglePlay}>
-  {#if isPlaying}
-    <PauseIcon />
-  {:else}
-    <PlayIcon />
-  {/if}
-</Button>
+<footer class="fixed bottom-0 inset-x-0 z-10 h-1/20">
+  <div class="mx-auto flex items-center justify-center gap-4 px-6">
+    <TrackSelector />
+    <PlayPause />
+  </div>
+</footer>
