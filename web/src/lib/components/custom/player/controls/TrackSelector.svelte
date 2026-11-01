@@ -2,17 +2,18 @@
   import { getContext } from "svelte";
   import * as Popover from "$lib/components/ui/popover/index.ts";
   import { buttonVariants } from "$lib/components/ui/button/index.ts";
-  import type { Track } from "@coderline/alphatab";
+  import { model } from "@coderline/alphatab";
   import ListIcon from "@lucide/svelte/icons/list";
+  import type { AlphaTabContext } from "$lib/types";
 
-  const alphaTabContext = getContext("alphatab");
-  let tracks: Track[] = $state([]);
+  const alphaTabContext: AlphaTabContext = getContext("alphatab");
+  let tracks: model.Track[] = $state([]);
 
   $effect(() => {
     const api = alphaTabContext.api;
     if (!api) return;
 
-    const scoreLoadedHandler = (score) => {
+    const scoreLoadedHandler = (score: model.Score) => {
       tracks = score.tracks;
     };
 

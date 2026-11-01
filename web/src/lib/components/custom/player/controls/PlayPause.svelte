@@ -4,15 +4,16 @@
   import { AlphaTabApi, synth } from "@coderline/alphatab";
   import PauseIcon from "@lucide/svelte/icons/pause";
   import PlayIcon from "@lucide/svelte/icons/play";
+  import type { AlphaTabContext } from "$lib/types";
 
-  const alphaTabContext = getContext("alphatab");
+  const alphaTabContext: AlphaTabContext = getContext("alphatab");
   let isPlaying: boolean = $state(false);
 
   const togglePlay = () => {
     alphaTabContext.api?.playPause();
   };
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = (event: KeyboardEvent) => {
     if (event.code === "Space") {
       togglePlay();
     }
@@ -22,7 +23,7 @@
     const api = alphaTabContext.api;
     if (!api) return;
 
-    const playerStateChangedHandler = (event) => {
+    const playerStateChangedHandler = (event: synth.PlayerStateChangedEventArgs) => {
       isPlaying = event.state === synth.PlayerState.Playing;
     };
 

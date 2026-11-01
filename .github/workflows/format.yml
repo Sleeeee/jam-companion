@@ -1,4 +1,4 @@
-name: Format
+name: Code quality
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   format:
-    name: Check formatting
+    name: Check code quality
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -24,3 +24,6 @@ jobs:
 
       - name: Check formatting
         run: bun fmt --check
+
+      - name: Check types
+        run: bun check
